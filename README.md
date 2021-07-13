@@ -1,6 +1,3 @@
-扫码加微信（微信ID：**a_java_boy2**），备注V部落，进群讨论。
-
-![](https://user-images.githubusercontent.com/6023444/75459026-ba70d500-59b9-11ea-8cbd-3d5889f356c4.png)
 
 V 部落姊妹篇：[https://github.com/lenve/vhr](https://github.com/lenve/vhr)
 
@@ -114,6 +111,3 @@ MIT
 
 ## 其他
 
-关注公众号**江南一点雨**，专注于 Spring Boot+微服务，定期视频教程分享，关注后回复 Java ，领取松哥为你精心准备的 Java 干货！
-
-![公众号二维码](http://www.javaboy.org/images/sb/javaboy.jpg)  
