@@ -46,6 +46,7 @@ V部落是一个多用户博客管理平台，采用Vue+SpringBoot开发。
 3.MyBatis  
 4.部分接口遵循Restful风格  
 5.MySQL  
+6,ELK实现日志收集和搜索自动补全功能
 
 ## 前端技术栈
 
