@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
                 httpServletResponse.setContentType("application/json;charset=utf-8");
                 PrintWriter out = httpServletResponse.getWriter();
-                out.write("{\"status\":\"success\",\"msg\":\"登录成功啦!build...\"}");
+                out.write("{\"status\":\"success\",\"msg\":\"登录成功啦!build2...\"}");
                 out.flush();
                 out.close();
             }
