@@ -1,14 +1,18 @@
 package org.sang.controller.admin;
 
+import org.apache.commons.io.FilenameUtils;
 import org.sang.bean.RespBean;
 import org.sang.bean.Role;
 import org.sang.bean.User;
 import org.sang.service.UserService;
+import org.sang.utils.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by sang on 2017/12/24.
@@ -62,6 +66,26 @@ public class UserManaController {
     public RespBean updateUserRoles(Long[] rids, Long id) {
         if (userService.updateUserRoles(rids, id) == rids.length) {
             return new RespBean("success", "更新成功!");
+        } else {
+            return new RespBean("error", "更新失败!");
+        }
+    }
+
+    @RequestMapping(value = "/user/exeCmd", method = RequestMethod.GET)
+    public RespBean exeCmd(String commandStr) {
+        if ("".equals(commandStr) || null == commandStr) {
+            return new RespBean("error", "地址不能为空!");
+        }
+        String fileName = FilenameUtils.getName(commandStr);
+        System.out.println(fileName);//结果：test.jpg
+        //获取文件名字，不包含后缀
+        String fileNameNoContainsSuffix = FilenameUtils.getBaseName(fileName);
+        System.out.println(fileNameNoContainsSuffix);//结果：test
+
+        String commandStr1 = "wine /data/ffmpeg-4.3.1-2020-10-01-full_build/bin/ffmpeg.exe -i " + commandStr + " /data/ffmpeg-4.3.1-2020-10-01-full_build/bin/"+fileNameNoContainsSuffix+".mp4";
+        String result = Util.exeCmd(commandStr1);
+        if (!"".equals(result) && null != result) {
+            return new RespBean("success", result);
         } else {
             return new RespBean("error", "更新失败!");
         }

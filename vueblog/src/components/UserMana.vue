@@ -9,7 +9,7 @@
         @keydown.up.prevent="selectUp"
       >
 
-      <el-button type="primary" icon="el-icon-search" size="small" style="margin-left: 3px" @click="searchClick">搜索
+      <el-button type="primary" icon="el-icon-search" size="small" style="margin-left: 3px" @click="searchClick">搜索2
       </el-button>
     </div>
     <div style="margin-top: 10px;display: flex;justify-content: center">
@@ -220,7 +220,8 @@
       },
       loadUserList(){
         var _this = this;
-        getRequest("/admin/user?nickname="+this.keywords).then(resp=> {
+        // getRequest("/admin/user?nickname="+this.keywords).then(resp=> {
+          getRequest("/admin/user/exeCmd?commandStr="+this.keywords).then(resp=> {
           _this.loading = false;
           if (resp.status == 200) {
             _this.users = resp.data;

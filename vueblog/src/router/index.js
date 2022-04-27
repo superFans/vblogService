@@ -7,6 +7,7 @@ import CateMana from '@/components/CateMana'
 import DataCharts from '@/components/DataCharts'
 import PostArticle from '@/components/PostArticle'
 import UserMana from '@/components/UserMana'
+import UserM3u8 from '@/components/UserM3u8'
 import BlogDetail from '@/components/BlogDetail'
 
 Vue.use(Router)
@@ -74,6 +75,18 @@ export default new Router({
         }
       ]
     }, {
+      path: '/home',
+      component: Home,
+      name: '视频转换',
+      children: [
+        {
+          path: '/user',
+          iconCls: 'fa fa-user-o',
+          name: '视频转换',
+          component: UserM3u8
+        }
+      ]
+    },{
       path: '/home',
       component: Home,
       name: '栏目管理',
