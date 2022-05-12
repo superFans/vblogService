@@ -8,8 +8,10 @@ import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.common.unit.TimeValue;
+import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.index.query.TermQueryBuilder;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -101,11 +103,19 @@ public class Util {
     }
 
     public static SearchHits search(String index, String key, String value){
-        QueryBuilder matchQueryBuilder = QueryBuilders.matchPhraseQuery(key, value);
-//        matchQueryBuilder.
+//        QueryBuilder matchQueryBuilder = QueryBuilders.matchPhraseQuery(key, value);
         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
-//        sourceBuilder.query(QueryBuilders.termQuery("content", content));
-        sourceBuilder.query(matchQueryBuilder);
+//创建复合查询条件对象
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+        //如以下条件：查询key中有value的并且enabled必须==true的
+//        BoolQueryBuilder must = boolQueryBuilder.should(
+//                QueryBuilders.matchQuery(key, value))
+//                .must(QueryBuilders.matchQuery("enabled", true));
+//        TermQueryBuilder termQueryBuilder = QueryBuilders.termQuery("type", "201002");
+
+        boolQueryBuilder.must(QueryBuilders.matchPhraseQuery(key, value));
+        boolQueryBuilder.must(QueryBuilders.matchQuery("enabled", true));
+        sourceBuilder.query(boolQueryBuilder);
         sourceBuilder.from(0);
         sourceBuilder.size(100);
         sourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
