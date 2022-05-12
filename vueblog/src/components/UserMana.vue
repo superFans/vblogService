@@ -220,8 +220,8 @@
       },
       loadUserList(){
         var _this = this;
-        // getRequest("/admin/user?nickname="+this.keywords).then(resp=> {
-          getRequest("/admin/user/exeCmd?commandStr="+this.keywords).then(resp=> {
+        getRequest("/admin/user?nickname="+this.keywords).then(resp=> {
+        //   getRequest("/admin/user/exeCmd?commandStr="+this.keywords).then(resp=> {
           _this.loading = false;
           if (resp.status == 200) {
             _this.users = resp.data;
